@@ -1,0 +1,17 @@
+getData
+pneumoniamnist_data = np.load('./data/pneumoniamnist.npz')
+        # print(pneumoniamnist_data.files)
+        # print()
+        train_images = pneumoniamnist_data['train_images']
+        # test_images = mnist_data['val_images']
+        test_images = pneumoniamnist_data['test_images']
+        train_labels = pneumoniamnist_data['train_labels']
+        # test_labels = pneumoniamnist_data['val_labels']
+        test_labels = pneumoniamnist_data['test_labels']
+
+        #train pneumoniamnist
+        train_images = train_images.reshape(4708, 28, 28, 1)
+        test_images = test_images.reshape(624, 28, 28, 1)
+
+python server.py -nc 100 -cf 0.1 -E 4 -B 10 -mn mnist_2nn  -ncomm 60 -iid 1 -lr 0.01 -vf 1 -g 0 -dpm no_dp
+accuracy: 0.817742109298706

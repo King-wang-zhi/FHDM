@@ -1,0 +1,28 @@
+path:
+  data_path: config/config.yaml
+  result_path: results/
+
+general:
+  use_cuda: Yes
+  seed: 0
+  train_target_size: 5000 # 2 500, 5 000, 10 000, 15 000 // 4 600, 10 520, 19 920, 29 540, 越多攻击精度越好10000达到90%
+  test_target_size: 1000
+  number_shadow_model: 2 # 25 50 MNIST ou 100 cifar 越多攻击精度越好，但是提升不大30提升3%
+
+learning:
+  batch_size: 64
+  learning_rate: 0.001
+  momentum: 0.5
+  epochs: 10 #25 max 100 cifar10, 200 sinon  几乎没有变化
+  decrease_lr_factor: 0.0000001
+  decrease_lr_every: 1
+  ml:
+    reg_lambd: 30
+    n_estimators: 10000
+
+statistics:
+  dataset: PathMNIST #MNIST // CIFAR10 // CIFAR100 // PneumoniaMNIST // BloodMNIST // PathMNIST
+  type: overfitting #training_size // number_shadow // overfitting
+  training_size_value: [5000] #[2500, 5000, 10000, 15000] #4 600, 10 520, 19 920, 29 540   2500与5000变化不大
+  number_shadow_value: [10] #[2, 10 ,20, 50, 100]
+  epoch_value: [20] #[2, 10 ,20, 50, 100]   20为74%，50为87%，4为63%
